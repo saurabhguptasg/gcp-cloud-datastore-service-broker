@@ -1,0 +1,33 @@
+runtime: java
+env: flex
+service: default
+
+runtime_config:
+  jdk: openjdk8
+
+resources:
+  cpu: 1
+  memory_gb: 1
+
+health_check:
+  enable_health_check: True
+  check_interval_sec: 5
+  timeout_sec: 4
+  unhealthy_threshold: 2
+  restart_threshold: 2
+
+automatic_scaling:
+  min_num_instances: 2
+  max_num_instances: 20
+  cool_down_period_sec: 60 #120 is the default value
+  cpu_utilization:
+    target_utilization: 0.5
+
+handlers:
+- url: /.*
+  script: this field is required, but ignored
+
+env_variables:
+  SECURITY_USER_NAME: <random uuid>
+  SECURITY_USER_PASSWORD: <random uuid>
+  SPRING_PROFILES_ACTIVE: AppEngine
