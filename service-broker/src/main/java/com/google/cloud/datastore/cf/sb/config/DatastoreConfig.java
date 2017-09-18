@@ -25,8 +25,9 @@ public class DatastoreConfig {
   public Datastore getDatastore() throws IOException {
     return DatastoreOptions
             .newBuilder()
+            .setProjectId(credentialConfig.getProjectId())
             .setCredentials(GoogleCredentials.fromStream(new ByteArrayInputStream(credentialConfig.getApplicationCredentials().getBytes())))
-            .setNamespace("_GCP_SERVICE_BROKER_NAMESPACE_")
+            .setNamespace("_GCP_DATASTORE_SERVICE_BROKER_NAMESPACE_")
             .build().getService();
   }
 

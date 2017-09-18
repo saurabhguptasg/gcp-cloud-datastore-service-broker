@@ -25,6 +25,7 @@ public class VcapConfig {
 
   private JsonObject vcapServicesObject;
   private GoogleCredentials googleCredentials;
+  private String projectId;
   private String serviceInstanceId;
 
   @PostConstruct
@@ -50,6 +51,8 @@ public class VcapConfig {
 
       serviceInstanceId = credentials.get("serviceInstanceId").getAsString();
       System.out.println("serviceInstanceId = " + serviceInstanceId);
+
+      projectId = credentials.get("projectId").getAsString();
     }
     else {
       System.out.println("-->> -->> no gcds object!!");
@@ -67,6 +70,7 @@ public class VcapConfig {
       System.out.println(">> >> >> >> CREATING DATASTORE with namespace: " + serviceInstanceId);
       return DatastoreOptions
               .newBuilder()
+              .setProjectId(projectId)
               .setCredentials(googleCredentials)
               .setNamespace(serviceInstanceId)
               .build().getService();

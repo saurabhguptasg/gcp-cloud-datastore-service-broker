@@ -14,7 +14,14 @@ public class ApplicationCredentialConfig {
   @Value("${GOOGLE_CREDENTIALS}")
   private String applicationCredentials;
 
+  @Value("${PROJECT_ID}")
+  private String projectId;
+
   public String getApplicationCredentials() {
     return applicationCredentials;
+  }
+
+  public String getProjectId() {
+    return projectId;
   }
 }

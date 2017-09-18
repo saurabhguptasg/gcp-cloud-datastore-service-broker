@@ -62,6 +62,7 @@ public class ServiceInstanceBindingManager implements ServiceInstanceBindingServ
         credentials.put("bindingId", request.getBindingId());
         credentials.put("serviceInstanceId", request.getServiceInstanceId());
         credentials.put("applicationCredentials", credentialConfig.getApplicationCredentials());
+        credentials.put("projectId", credentialConfig.getProjectId());
         response.withCredentials(credentials);
       } catch (Exception e) {
         e.printStackTrace();
